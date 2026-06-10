@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – AI Expense Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link rel="stylesheet" href="/static/home.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="hn-navbar" id="hn-navbar">
+  <a href="/" class="hn-brand">
+    <div class="hn-brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+    <span>AI Expense <em>Tracker</em></span>
+  </a>
+  <div class="hn-nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#why">Why Us</a>
+    <a href="/#how">How It Works</a>
+    <a href="/about" class="active">About</a>
+  </div>
+  <div class="hn-nav-actions">
+    {% if logged_in %}
+    <div class="hn-user-chip">
+      <div class="hn-avatar"><i class="fa-solid fa-user"></i></div>
+      <span>{{ username }}</span>
+    </div>
+    <a href="/dashboard" class="hn-btn-primary">Dashboard</a>
+    <a href="/logout" class="hn-btn-ghost">Log Out</a>
+    {% else %}
+    <a href="/simple-auth" class="hn-btn-ghost">Log In</a>
+    <a href="/simple-auth" class="hn-btn-primary">Get Started</a>
+    {% endif %}
+  </div>
+</nav>
+
+<!-- ABOUT HERO -->
+<section class="hn-hero" style="min-height: 60vh; padding-top: 120px;">
+  <div class="hn-hero-overlay"></div>
+  <div class="hn-hero-content">
+    <h1>About AI Expense Tracker</h1>
+    <p>Empowering smart financial decisions through AI-powered expense tracking and insights.</p>
+  </div>
+</section>
+
+<!-- ABOUT CONTENT -->
+<section style="padding: 80px 2rem; background: var(--bg2);">
+  <div class="hn-container" style="max-width: 800px; margin: 0 auto;">
+    
+    <!-- Mission -->
+    <div style="margin-bottom: 60px; text-align: center;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--text);">Our Mission</h2>
+      <p style="font-size: 1.2rem; line-height: 1.8; color: var(--muted);">
+        To make personal finance management effortless and intelligent through cutting-edge AI technology, 
+        helping individuals take control of their financial future with data-driven insights and automated tracking.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px;">
+      
+      <div style="background: var(--card); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border);">
+        <div style="color: #fb923c; font-size: 2.5rem; margin-bottom: 15px;">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <h3 style="color: var(--text); margin-bottom: 15px;">AI-Powered Intelligence</h3>
+        <p style="color: var(--muted); line-height: 1.6;">
+          Our machine learning algorithms analyze your spending patterns to provide personalized insights, 
+          predictions, and financial recommendations tailored to your lifestyle.
+        </p>
+      </div>
+
+      <div style="background: var(--card); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border);">
+        <div style="color: #00d4aa; font-size: 2.5rem; margin-bottom: 15px;">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+        <h3 style="color: var(--text); margin-bottom: 15px;">OCR Technology</h3>
+        <p style="color: var(--muted); line-height: 1.6;">
+          Advanced Optical Character Recognition extracts expense data from receipts and bills automatically, 
+          eliminating manual data entry and reducing errors.
+        </p>
+      </div>
+
+      <div style="background: var(--card); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border);">
+        <div style="color: #ff9f43; font-size: 2.5rem; margin-bottom: 15px;">
+          <i class="fa-solid fa-chart-bar"></i>
+        </div>
+        <h3 style="color: var(--text); margin-bottom: 15px;">Rich Analytics</h3>
+        <p style="color: var(--muted); line-height: 1.6;">
+          Six interactive charts provide comprehensive insights into your spending habits, 
+          trends, and patterns to help you make informed financial decisions.
+        </p>
+      </div>
+
+      <div style="background: var(--card); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border);">
+        <div style="color: #a78bfa; font-size: 2.5rem; margin-bottom: 15px;">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 style="color: var(--text); margin-bottom: 15px;">Privacy & Security</h3>
+        <p style="color: var(--muted); line-height: 1.6;">
+          Your financial data is encrypted and stored securely. We prioritize your privacy 
+          with industry-standard security measures and transparent data practices.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Technology Stack -->
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h2 style="font-size: 2rem; margin-bottom: 2rem; color: var(--text);">Built With Modern Technology</h2>
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; align-items: center;">
+        <div style="text-align: center;">
+          <div style="font-size: 3rem; color: #fb923c; margin-bottom: 10px;">
+            <i class="fa-brands fa-python"></i>
+          </div>
+          <span style="color: var(--muted); font-weight: 600;">Python & Flask</span>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 3rem; color: #00d4aa; margin-bottom: 10px;">
+            <i class="fa-brands fa-js-square"></i>
+          </div>
+          <span style="color: var(--muted); font-weight: 600;">JavaScript & Chart.js</span>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 3rem; color: #ff9f43; margin-bottom: 10px;">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <span style="color: var(--muted); font-weight: 600;">SQLite Database</span>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 3rem; color: #a78bfa; margin-bottom: 10px;">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <span style="color: var(--muted); font-weight: 600;">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div style="background: var(--card); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border); text-align: center;">
+      <h2 style="color: var(--text); margin-bottom: 30px;">Why Choose Our Platform?</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: #fb923c; margin-bottom: 5px;">100%</div>
+          <div style="color: var(--muted); font-size: 0.9rem;">Free Forever</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: #00d4aa; margin-bottom: 5px;">7+</div>
+          <div style="color: var(--muted); font-size: 0.9rem;">Smart Categories</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: #ff9f43; margin-bottom: 5px;">6+</div>
+          <div style="color: var(--muted); font-size: 0.9rem;">Analytics Charts</div>
+        </div>
+        <div>
+          <div style="font-size: 2.5rem; font-weight: 900; color: #a78bfa; margin-bottom: 5px;">AI</div>
+          <div style="color: var(--muted); font-size: 0.9rem;">Powered Insights</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hn-cta">
+  <div class="hn-container">
+    <h2>Ready to take control of your finances?</h2>
+    <p>Join thousands of users who trust AI Expense Tracker for their financial management.</p>
+    <div class="hn-cta-btns">
+      {% if not logged_in %}
+      <a href="/simple-auth" class="hn-btn-primary lg"><i class="fa-solid fa-rocket"></i> Get Started Free</a>
+      <a href="/simple-auth" class="hn-btn-outline lg"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
+      {% else %}
+      <a href="/dashboard" class="hn-btn-primary lg"><i class="fa-solid fa-gauge-high"></i> Go to Dashboard</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="hn-footer">
+  <div class="hn-container">
+    <div class="hn-footer-brand"><i class="fa-solid fa-chart-line"></i> AI Expense Tracker</div>
+    <span>Built with Flask, Chart.js & AI</span>
+    <div class="hn-footer-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/simple-auth">Login</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('hn-navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { 
+      e.preventDefault(); 
+      target.scrollIntoView({ behavior: 'smooth' }); 
+    }
+  });
+});
+</script>
+
+</body>
+</html>

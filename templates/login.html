@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Login v2025 - AI Expense Tracker</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="/static/auth.css?v=50"/>
+</head>
+<body>
+<div class="auth-bg">
+  <div class="auth-left">
+    <svg class="scene-svg" viewBox="0 0 500 680" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="rh" cx="36%" cy="30%" r="62%">
+          <stop offset="0%" stop-color="#d0e8ff"/>
+          <stop offset="55%" stop-color="#a8ccf0"/>
+          <stop offset="100%" stop-color="#7aaee0"/>
+        </radialGradient>
+        <radialGradient id="rb" cx="34%" cy="28%" r="62%">
+          <stop offset="0%" stop-color="#c0dcff"/>
+          <stop offset="55%" stop-color="#98c0f0"/>
+          <stop offset="100%" stop-color="#6a9ee0"/>
+        </radialGradient>
+        <radialGradient id="eg" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#00f0e8"/>
+          <stop offset="100%" stop-color="#0088cc"/>
+        </radialGradient>
+        <radialGradient id="op" cx="35%" cy="30%" r="65%">
+          <stop offset="0%" stop-color="#ffdd66"/>
+          <stop offset="55%" stop-color="#ffaa22"/>
+          <stop offset="100%" stop-color="#ee6600"/>
+        </radialGradient>
+        <radialGradient id="tp" cx="35%" cy="30%" r="65%">
+          <stop offset="0%" stop-color="#66ffee"/>
+          <stop offset="55%" stop-color="#00ddcc"/>
+          <stop offset="100%" stop-color="#009988"/>
+        </radialGradient>
+        <radialGradient id="gp" cx="35%" cy="30%" r="65%">
+          <stop offset="0%" stop-color="#ffee88"/>
+          <stop offset="100%" stop-color="#ddaa00"/>
+        </radialGradient>
+        <filter id="gl" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="rgba(0,80,180,0.18)"/>
+        </filter>
+        <filter id="rs" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="rgba(0,60,140,0.22)"/>
+        </filter>
+      </defs>
+      <style>
+        @keyframes robotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+        @keyframes eyePulse{0%,100%{opacity:1}50%{opacity:0.15}}
+        @keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-16px) rotate(8deg)}}
+        @keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        @keyframes floatC{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(-5deg)}}
+        @keyframes starPulse{0%,100%{opacity:0.8;transform:scale(1)}50%{opacity:0.15;transform:scale(0.6)}}
+        @keyframes chipA{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+        @keyframes chipB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+        @keyframes chipC{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        .rob{animation:robotFloat 4s ease-in-out infinite;transform-origin:250px 440px}
+        .ep{animation:eyePulse 2.5s ease-in-out infinite}
+        .pa{animation:floatA 4s ease-in-out infinite}
+        .pb{animation:floatB 5s ease-in-out infinite .8s}
+        .pc{animation:floatC 3.5s ease-in-out infinite 1.5s}
+        .pd{animation:floatA 4.5s ease-in-out infinite 2s}
+        .pe{animation:floatB 3.8s ease-in-out infinite .4s}
+        .sp{animation:starPulse 3s ease-in-out infinite}
+        .ca{animation:chipA 4s ease-in-out infinite}
+        .cb{animation:chipB 4.5s ease-in-out infinite .6s}
+        .cc{animation:chipC 3.8s ease-in-out infinite 1.2s}
+        .coin1{animation:floatA 3.5s ease-in-out infinite}
+        .coin2{animation:floatB 4.2s ease-in-out infinite .7s}
+        .coin3{animation:floatC 3s ease-in-out infinite 1.3s}
+        .coin4{animation:floatA 4s ease-in-out infinite 2s}
+      </style>
+
+      <!-- WHITE BACKGROUND -->
+      <rect x="0" y="0" width="500" height="680" fill="#ffffff"/>
+      <ellipse cx="250" cy="340" rx="280" ry="260" fill="#eef6ff" opacity="0.7"/>
+
+      <!-- ORANGE PLANET top-left -->
+      <g class="pa">
+        <circle cx="60" cy="140" r="50" fill="url(#op)" filter="url(#sh)"/>
+        <ellipse cx="60" cy="140" rx="50" ry="15" fill="none" stroke="rgba(255,140,0,0.35)" stroke-width="3" transform="rotate(-18,60,140)"/>
+        <ellipse cx="42" cy="122" rx="16" ry="11" fill="rgba(255,255,255,0.28)"/>
+      </g>
+
+      <!-- TEAL PLANET top-right -->
+      <g class="pb">
+        <circle cx="452" cy="175" r="36" fill="url(#tp)" filter="url(#sh)"/>
+        <ellipse cx="435" cy="160" rx="13" ry="8" fill="rgba(255,255,255,0.3)"/>
+      </g>
+
+      <!-- SATURN planet mid-right -->
+      <g class="pc">
+        <ellipse cx="440" cy="340" rx="48" ry="7" fill="rgba(200,160,0,0.35)" transform="rotate(-12,440,340)"/>
+        <circle cx="440" cy="340" r="17" fill="url(#gp)" filter="url(#sh)"/>
+        <ellipse cx="440" cy="340" rx="48" ry="7" fill="none" stroke="rgba(200,160,0,0.45)" stroke-width="2" transform="rotate(-12,440,340)"/>
+        <ellipse cx="432" cy="333" rx="6" ry="4" fill="rgba(255,255,255,0.35)"/>
+      </g>
+
+      <!-- small teal orb bottom-left -->
+      <g class="pd">
+        <circle cx="45" cy="530" r="26" fill="url(#tp)" filter="url(#sh)" opacity="0.85"/>
+        <ellipse cx="36" cy="521" rx="9" ry="6" fill="rgba(255,255,255,0.3)"/>
+      </g>
+
+      <!-- small orange orb bottom-right -->
+      <g class="pe">
+        <circle cx="462" cy="555" r="20" fill="url(#op)" filter="url(#sh)" opacity="0.8"/>
+      </g>
+
+      <!-- STAR -->
+      <g class="sp">
+        <polygon points="250,52 254,66 268,66 257,75 261,89 250,80 239,89 243,75 232,66 246,66" fill="#6c63ff" opacity="0.55" filter="url(#gl)"/>
+      </g>
+      <circle class="sp" cx="148" cy="82" r="4" fill="#a78bfa" opacity="0.5"/>
+      <circle class="sp" cx="385" cy="68" r="3" fill="#6c63ff" opacity="0.45"/>
+      <circle class="sp" cx="478" cy="118" r="3" fill="#00b896" opacity="0.45"/>
+      <circle class="sp" cx="28" cy="255" r="3" fill="#f59e0b" opacity="0.45"/>
+
+      <!-- ===== ROBOT ===== -->
+      <g class="rob" filter="url(#rs)">
+        <!-- shadow -->
+        <ellipse cx="250" cy="590" rx="80" ry="12" fill="rgba(0,80,180,0.15)"/>
+        <!-- BODY -->
+        <ellipse cx="250" cy="480" rx="82" ry="88" fill="url(#rb)" stroke="rgba(100,160,240,0.6)" stroke-width="2"/>
+        <ellipse cx="228" cy="446" rx="30" ry="23" fill="rgba(255,255,255,0.4)"/>
+        <!-- chest panel -->
+        <rect x="212" y="462" width="76" height="54" rx="13" fill="rgba(0,100,200,0.15)" stroke="rgba(0,200,220,0.6)" stroke-width="2"/>
+        <!-- chest light -->
+        <circle cx="250" cy="489" r="16" fill="#0077aa" opacity="0.75"/>
+        <circle cx="250" cy="489" r="9" fill="#00eedd" filter="url(#gl)"/>
+        <circle cx="250" cy="489" r="21" fill="none" stroke="rgba(0,238,221,0.35)" stroke-width="2"/>
+        <!-- NECK -->
+        <rect x="240" y="388" width="20" height="10" rx="4" fill="#88aacc"/>
+        <rect x="241" y="377" width="18" height="9" rx="4" fill="#aaccee"/>
+        <rect x="240" y="367" width="20" height="9" rx="4" fill="#88aacc"/>
+        <rect x="241" y="357" width="18" height="8" rx="4" fill="#aaccee"/>
+        <!-- HEAD -->
+        <ellipse cx="250" cy="258" rx="108" ry="98" fill="url(#rh)" stroke="rgba(100,160,240,0.6)" stroke-width="2"/>
+        <ellipse cx="220" cy="215" rx="42" ry="30" fill="rgba(255,255,255,0.35)"/>
+        <!-- LEFT EAR -->
+        <circle cx="144" cy="258" r="28" fill="url(#rh)" stroke="rgba(100,160,240,0.5)" stroke-width="1.5"/>
+        <circle cx="144" cy="258" r="16" fill="#0066aa" opacity="0.55"/>
+        <circle cx="144" cy="258" r="9" fill="#00eedd" filter="url(#gl)"/>
+        <!-- RIGHT EAR -->
+        <circle cx="356" cy="258" r="28" fill="url(#rh)" stroke="rgba(100,160,240,0.5)" stroke-width="1.5"/>
+        <circle cx="356" cy="258" r="16" fill="#0066aa" opacity="0.55"/>
+        <circle cx="356" cy="258" r="9" fill="#00eedd" filter="url(#gl)"/>
+        <!-- LEFT EYE -->
+        <ellipse cx="208" cy="248" rx="44" ry="38" fill="#040c1a"/>
+        <ellipse cx="208" cy="248" rx="34" ry="28" fill="url(#eg)" opacity="0.9"/>
+        <ellipse cx="208" cy="248" rx="22" ry="18" fill="#00eedd" class="ep" filter="url(#gl)"/>
+        <ellipse cx="196" cy="236" rx="10" ry="7" fill="rgba(255,255,255,0.7)"/>
+        <!-- RIGHT EYE -->
+        <ellipse cx="292" cy="248" rx="44" ry="38" fill="#040c1a"/>
+        <ellipse cx="292" cy="248" rx="34" ry="28" fill="url(#eg)" opacity="0.9"/>
+        <ellipse cx="292" cy="248" rx="22" ry="18" fill="#00eedd" class="ep" filter="url(#gl)"/>
+        <ellipse cx="280" cy="236" rx="10" ry="7" fill="rgba(255,255,255,0.7)"/>
+        <!-- SMILE -->
+        <path d="M 206 302 Q 250 336 294 302" stroke="#00eedd" stroke-width="5.5" fill="none" stroke-linecap="round" filter="url(#gl)"/>
+        <!-- LEFT ARM -->
+        <ellipse cx="168" cy="468" rx="16" ry="44" fill="url(#rb)" stroke="rgba(100,160,240,0.5)" stroke-width="1.5" transform="rotate(15,168,468)"/>
+        <circle cx="150" cy="508" r="14" fill="#88aacc"/>
+        <circle cx="138" cy="520" r="8" fill="#7799bb"/>
+        <!-- RIGHT ARM -->
+        <ellipse cx="332" cy="468" rx="16" ry="44" fill="url(#rb)" stroke="rgba(100,160,240,0.5)" stroke-width="1.5" transform="rotate(-15,332,468)"/>
+        <circle cx="350" cy="508" r="14" fill="#88aacc"/>
+        <circle cx="362" cy="520" r="8" fill="#7799bb"/>
+      </g>
+
+      <!-- COINS -->
+      <g class="coin1">
+        <circle cx="55" cy="265" r="27" fill="#f0b820" filter="url(#sh)"/>
+        <circle cx="55" cy="265" r="19" fill="#d89810" opacity="0.9"/>
+        <text x="55" y="272" text-anchor="middle" font-size="17" font-weight="900" fill="#fff" font-family="sans-serif">&#8377;</text>
+      </g>
+      <g class="coin2">
+        <circle cx="432" cy="245" r="21" fill="#f0b820" filter="url(#sh)"/>
+        <circle cx="432" cy="245" r="14" fill="#d89810" opacity="0.9"/>
+        <text x="432" y="251" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="sans-serif">&#8377;</text>
+      </g>
+      <g class="coin3">
+        <circle cx="448" cy="450" r="15" fill="#f0b820"/>
+        <circle cx="448" cy="450" r="10" fill="#d89810" opacity="0.9"/>
+        <text x="448" y="455" text-anchor="middle" font-size="9" font-weight="900" fill="#fff" font-family="sans-serif">&#8377;</text>
+      </g>
+      <g class="coin4">
+        <circle cx="38" cy="400" r="13" fill="#f0b820"/>
+        <circle cx="38" cy="400" r="9" fill="#d89810" opacity="0.9"/>
+        <text x="38" y="404" text-anchor="middle" font-size="8" font-weight="900" fill="#fff" font-family="sans-serif">&#8377;</text>
+      </g>
+
+      <!-- CHIPS -->
+      <g class="ca">
+        <rect x="22" y="435" width="145" height="34" rx="17" fill="rgba(108,99,255,0.12)" stroke="rgba(108,99,255,0.3)" stroke-width="1.5"/>
+        <circle cx="42" cy="452" r="9" fill="#6c63ff"/>
+        <text x="42" y="456" text-anchor="middle" font-size="9" fill="#fff" font-family="sans-serif">AI</text>
+        <text x="100" y="457" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e2140" font-family="sans-serif">AI Calculating...</text>
+      </g>
+      <g class="cb">
+        <rect x="333" y="425" width="145" height="34" rx="17" fill="rgba(0,184,150,0.12)" stroke="rgba(0,184,150,0.3)" stroke-width="1.5"/>
+        <circle cx="353" cy="442" r="9" fill="#00b896"/>
+        <text x="353" y="446" text-anchor="middle" font-size="9" fill="#fff" font-family="sans-serif">&#10003;</text>
+        <text x="408" y="447" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e2140" font-family="sans-serif">&#8377;850 scanned</text>
+      </g>
+      <g class="cc">
+        <rect x="155" y="600" width="190" height="34" rx="17" fill="rgba(245,158,11,0.12)" stroke="rgba(245,158,11,0.3)" stroke-width="1.5"/>
+        <circle cx="175" cy="617" r="9" fill="#f59e0b"/>
+        <text x="175" y="621" text-anchor="middle" font-size="9" fill="#fff" font-family="sans-serif">&#8593;</text>
+        <text x="258" y="622" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e2140" font-family="sans-serif">12% predicted</text>
+      </g>
+    </svg>
+
+    <!-- TEXT ON TOP -->
+    <div class="left-text">
+      <div>
+        <div class="brand">
+          <div class="brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div>
+            <h1>AI-Based Expense Tracker</h1>
+            <h2>&amp; Financial Advisor</h2>
+          </div>
+        </div>
+        <p class="tagline">Smart expense tracking powered by AI &amp; Machine Learning</p>
+      </div>
+      <ul class="feats">
+        <li><i class="fa-solid fa-circle-check"></i> OCR Bill Scanner</li>
+        <li><i class="fa-solid fa-circle-check"></i> ML Expense Prediction</li>
+        <li><i class="fa-solid fa-circle-check"></i> Smart Financial Advisor</li>
+        <li><i class="fa-solid fa-circle-check"></i> Real-time Analytics</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+      <h2>Welcome back</h2>
+      <p class="sub">Sign in to your account</p>
+      <div id="msg" class="alert hidden"></div>
+      <div class="field">
+        <label>Email Address</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" autocomplete="current-password"/>
+          <button type="button" class="eye-btn" onclick="togglePw()">
+            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+          </button>
+        </div>
+      </div>
+      <button class="btn-submit" id="loginBtn" onclick="doLogin()">
+        <span>Sign In</span><i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <p class="switch-link">Don't have an account? <a href="/register">Create one</a></p>
+      <p class="switch-link"><a href="/"><i class="fa-solid fa-arrow-left"></i> Back to Home</a></p>
+    </div>
+  </div>
+</div>
+<script>
+function togglePw(){var i=document.getElementById('loginPassword'),e=document.getElementById('eyeIcon');i.type==='password'?(i.type='text',e.className='fa-solid fa-eye-slash'):(i.type='password',e.className='fa-solid fa-eye');}
+function showAlert(t,c){var e=document.getElementById('msg');e.textContent=t;e.className='alert '+c;e.style.display='block';}
+// Read ?next= from URL
+var nextSection = new URLSearchParams(window.location.search).get('next') || '';
+async function doLogin(){
+  var e=document.getElementById('loginEmail').value.trim(),p=document.getElementById('loginPassword').value;
+  if(!e||!p){showAlert('Please enter email and password','error');return;}
+  var b=document.getElementById('loginBtn');b.disabled=true;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+  try{
+    var r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p,next:nextSection})});
+    var d=await r.json();
+    if(d.success){
+      showAlert('Login successful!','success');
+      window.location.href = nextSection ? '/#' + nextSection : '/';
+    }
+    else{showAlert(d.message||'Invalid credentials','error');b.disabled=false;b.innerHTML='<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';}
+  }catch(err){showAlert('Connection error','error');b.disabled=false;b.innerHTML='<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';}
+}
+document.addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+</script>
+</body>
+</html>

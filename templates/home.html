@@ -1,0 +1,638 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Expense Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/static/home.css"/>
+</head>
+<body data-logged-in="{{ 'true' if logged_in else 'false' }}">
+
+<!-- NAVBAR -->
+<nav class="hn-navbar" id="hn-navbar">
+  <a href="/" class="hn-brand">
+    <div class="hn-brand-icon"><i class="fa-solid fa-chart-line"></i></div>
+    <span>AI Expense <em>Tracker</em></span>
+  </a>
+  <div class="hn-nav-links">
+    <a href="#features">Features</a>
+    <a href="#why">Why Us</a>
+    <a href="#how">How It Works</a>
+    <a href="/about">About</a>
+  </div>
+  <div class="hn-nav-actions">
+    {% if logged_in %}
+    <div class="hn-user-chip">
+      <div class="hn-avatar"><i class="fa-solid fa-user"></i></div>
+      <span>{{ username }}</span>
+    </div>
+    <a href="/logout" class="hn-btn-ghost">Log Out</a>
+    {% else %}
+    <button onclick="openAuthModal('login')" class="hn-btn-ghost">Log In</button>
+    <button onclick="openAuthModal('register')" class="hn-btn-primary">Get Started</button>
+    {% endif %}
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hn-hero">
+  <canvas id="bgCanvas"></canvas>
+  <div class="hn-hero-overlay"></div>
+  <div class="hn-hero-content">
+    <div class="hn-hero-badge"><span class="hn-dot"></span> AI-Powered Financial Intelligence</div>
+    <h1>Track Smarter.<br/><span class="hn-grad">Spend Better.</span></h1>
+    <p>All-in-one expense tracker with AI predictions, OCR bill scanning, smart auto-categorization, and 6+ rich analytics charts.</p>
+    <div class="hn-hero-btns">
+      {% if logged_in %}
+      <a href="/dashboard" class="hn-btn-primary lg"><i class="fa-solid fa-gauge-high"></i> Go to Dashboard</a>
+      {% else %}
+      <button onclick="openAuthModal('register')" class="hn-btn-primary lg"><i class="fa-solid fa-rocket"></i> Start for Free</button>
+      {% endif %}
+      <a href="#features" class="hn-btn-outline lg"><i class="fa-solid fa-circle-play"></i> See Features</a>
+    </div>
+  </div>
+  <div class="hn-hero-stats">
+    <div class="hn-hstat"><span class="hn-hstat-num" data-target="7">0</span><span>+</span><span class="hn-hstat-lbl">Categories</span></div>
+    <div class="hn-hstat"><span class="hn-hstat-num">OCR</span><span class="hn-hstat-lbl">Bill Scanning</span></div>
+    <div class="hn-hstat"><span class="hn-hstat-num">ML</span><span class="hn-hstat-lbl">AI Predictions</span></div>
+    <div class="hn-hstat"><span class="hn-hstat-num" data-target="6">0</span><span>+</span><span class="hn-hstat-lbl">Charts</span></div>
+    <div class="hn-hstat"><span class="hn-hstat-num">100%</span><span class="hn-hstat-lbl">Free</span></div>
+  </div>
+</section>
+
+
+<!-- FEATURES TABS SECTION -->
+<section class="hn-features" id="features">
+  <div class="hn-container">
+    <div class="hn-section-head">
+      <h2>Tailor-Made Features For Smart Finance Management</h2>
+      <p>Everything you need to track, analyze, and optimize your spending — all in one place. Click any feature to explore it.</p>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="hn-tabs">
+      <button class="hn-tab active" data-tab="dashboard">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </button>
+      <button class="hn-tab" data-tab="add">
+        <i class="fa-solid fa-plus-circle"></i>
+        <span>Add Expense</span>
+      </button>
+      <button class="hn-tab" data-tab="scan">
+        <i class="fa-solid fa-camera"></i>
+        <span>Scan Bill</span>
+      </button>
+      <button class="hn-tab" data-tab="reports">
+        <i class="fa-solid fa-chart-bar"></i>
+        <span>Reports</span>
+      </button>
+      <button class="hn-tab" data-tab="ai">
+        <i class="fa-solid fa-robot"></i>
+        <span>AI Advisor</span>
+      </button>
+      <button class="hn-tab" data-tab="categorize">
+        <i class="fa-solid fa-tags"></i>
+        <span>Categories</span>
+      </button>
+    </div>
+
+    <!-- Tab Panels -->
+    <div class="hn-tab-panels">
+
+      <!-- Dashboard -->
+      <div class="hn-panel active" id="tab-dashboard">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#22c55e"><i class="fa-solid fa-gauge-high"></i> Dashboard Overview</div>
+          <h3>Your financial snapshot at a glance.</h3>
+          <p>Live summary cards showing total spending, this month, transaction count, and AI-predicted next month — with two real-time charts updating as you add expenses.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> Total & monthly expense summary</li>
+            <li><i class="fa-solid fa-check"></i> AI-predicted next month spending</li>
+            <li><i class="fa-solid fa-check"></i> Monthly bar chart & category pie chart</li>
+            <li><i class="fa-solid fa-check"></i> Recent transactions table</li>
+          </ul>
+          <a href="#" onclick="goToFeature('dashboard')" class="hn-btn-primary">Open Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#22c55e">
+            <div class="hn-mock-header"><i class="fa-solid fa-gauge-high"></i> Dashboard</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-cards">
+                <div class="hn-mc" style="background:linear-gradient(135deg,#22c55e,#16a34a)"><i class="fa-solid fa-wallet"></i><div><div class="hn-mc-l">Total</div><div class="hn-mc-v">₹13,781</div></div></div>
+                <div class="hn-mc" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-calendar"></i><div><div class="hn-mc-l">This Month</div><div class="hn-mc-v">₹11,781</div></div></div>
+                <div class="hn-mc" style="background:linear-gradient(135deg,#22c55e,#059669)"><i class="fa-solid fa-brain"></i><div><div class="hn-mc-l">Predicted</div><div class="hn-mc-v">₹21,563</div></div></div>
+                <div class="hn-mc" style="background:linear-gradient(135deg,#f97316,#f59e0b)"><i class="fa-solid fa-lightbulb"></i><div><div class="hn-mc-l">Transactions</div><div class="hn-mc-v">6</div></div></div>
+              </div>
+              <div class="hn-mock-chart-row">
+                <div class="hn-mock-bars">
+                  <div class="hn-mb" style="height:35%"></div>
+                  <div class="hn-mb" style="height:60%"></div>
+                  <div class="hn-mb" style="height:45%"></div>
+                  <div class="hn-mb" style="height:85%"></div>
+                  <div class="hn-mb" style="height:55%"></div>
+                  <div class="hn-mb" style="height:95%"></div>
+                </div>
+                <svg viewBox="0 0 80 80" class="hn-mock-donut">
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#22c55e" stroke-width="14" stroke-dasharray="53 123" stroke-dashoffset="0"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#f97316" stroke-width="14" stroke-dasharray="35 141" stroke-dashoffset="-53"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#facc15" stroke-width="14" stroke-dasharray="24 152" stroke-dashoffset="-88"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#38bdf8" stroke-width="14" stroke-dasharray="16 160" stroke-dashoffset="-112"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Expense -->
+      <div class="hn-panel" id="tab-add">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#f97316"><i class="fa-solid fa-plus-circle"></i> Add Expense</div>
+          <h3>Log expenses in seconds.</h3>
+          <p>Type the expense title and amount — the system auto-detects the category using keyword matching. No manual tagging needed.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> Auto-categorization from title</li>
+            <li><i class="fa-solid fa-check"></i> Live category preview as you type</li>
+            <li><i class="fa-solid fa-check"></i> Date picker with today as default</li>
+            <li><i class="fa-solid fa-check"></i> Instant dashboard update</li>
+          </ul>
+          <a href="#" onclick="goToFeature('add')" class="hn-btn-primary" style="background:linear-gradient(135deg,#f97316,#ea580c)">Add Expense <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#f97316">
+            <div class="hn-mock-header" style="color:#f97316"><i class="fa-solid fa-plus-circle"></i> Add Expense</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-form">
+                <div class="hn-mf-field"><label>Expense Title</label><div class="hn-mf-input"><i class="fa-solid fa-pen"></i> Pizza delivery</div></div>
+                <div class="hn-mf-field"><label>Amount (₹)</label><div class="hn-mf-input"><i class="fa-solid fa-indian-rupee-sign"></i> 450.00</div></div>
+                <div class="hn-mf-field"><label>Date</label><div class="hn-mf-input"><i class="fa-solid fa-calendar"></i> Today</div></div>
+                <div class="hn-mf-cat"><i class="fa-solid fa-utensils" style="color:#22c55e"></i><span style="color:#22c55e;font-weight:700">Food</span><span class="hn-cat-badge">Auto-tagged</span></div>
+                <div class="hn-mf-btn" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-plus"></i> Add Expense</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scan Bill -->
+      <div class="hn-panel" id="tab-scan">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#f59e0b"><i class="fa-solid fa-camera"></i> Scan Bill (OCR)</div>
+          <h3>Snap a bill. Done.</h3>
+          <p>Upload any receipt or bill photo. The OCR engine reads the image and extracts the amount automatically — log it with one click.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> Drag & drop or click to upload</li>
+            <li><i class="fa-solid fa-check"></i> Extracts amount automatically</li>
+            <li><i class="fa-solid fa-check"></i> One-click to use detected amount</li>
+            <li><i class="fa-solid fa-check"></i> PNG, JPG, JPEG supported</li>
+          </ul>
+          <a href="#" onclick="goToFeature('scan')" class="hn-btn-primary" style="background:linear-gradient(135deg,#f59e0b,#f97316)">Try OCR Scanner <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#f59e0b">
+            <div class="hn-mock-header" style="color:#f59e0b"><i class="fa-solid fa-file-invoice"></i> OCR Result</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-upload"><i class="fa-solid fa-cloud-arrow-up"></i><span>receipt.jpg uploaded</span></div>
+              <div class="hn-mock-ocr-row"><span class="hn-ocr-lbl">Detected Amount</span><span class="hn-ocr-val" style="color:#22c55e">₹1,249.00</span></div>
+              <div class="hn-mf-btn" style="background:linear-gradient(135deg,#f59e0b,#f97316)"><i class="fa-solid fa-check"></i> Use This Amount</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div class="hn-panel" id="tab-reports">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#38bdf8"><i class="fa-solid fa-chart-bar"></i> Reports & Analytics</div>
+          <h3>6 charts. Full picture.</h3>
+          <p>Understand exactly where your money goes with six interactive Chart.js visualizations — from daily trends to weekday spending patterns.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> Monthly spending bar chart</li>
+            <li><i class="fa-solid fa-check"></i> Category doughnut breakdown</li>
+            <li><i class="fa-solid fa-check"></i> Daily spending line chart (30 days)</li>
+            <li><i class="fa-solid fa-check"></i> Top 5 expenses, weekday radar, cumulative</li>
+          </ul>
+          <a href="#" onclick="goToFeature('reports')" class="hn-btn-primary" style="background:linear-gradient(135deg,#38bdf8,#0284c7)">View Reports <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#38bdf8">
+            <div class="hn-mock-header" style="color:#38bdf8"><i class="fa-solid fa-chart-bar"></i> Monthly Trend</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-bars tall">
+                <div class="hn-mb" style="height:30%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+                <div class="hn-mb" style="height:55%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+                <div class="hn-mb" style="height:42%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+                <div class="hn-mb" style="height:78%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+                <div class="hn-mb" style="height:50%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+                <div class="hn-mb" style="height:92%;background:linear-gradient(180deg,#38bdf8,#0284c7)"></div>
+              </div>
+              <div class="hn-mock-report-chips">
+                <span style="color:#22c55e"><i class="fa-solid fa-chart-pie"></i> Category</span>
+                <span style="color:#f97316"><i class="fa-solid fa-chart-line"></i> Daily</span>
+                <span style="color:#facc15"><i class="fa-solid fa-ranking-star"></i> Top 5</span>
+                <span style="color:#a78bfa"><i class="fa-solid fa-calendar-week"></i> Weekday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Advisor -->
+      <div class="hn-panel" id="tab-ai">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#a78bfa"><i class="fa-solid fa-robot"></i> AI Advisor</div>
+          <h3>Your money, predicted.</h3>
+          <p>A linear regression model trained on your own spending history forecasts next month's total. Plus, get personalized tips based on your biggest spending categories.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> ML-powered next month forecast</li>
+            <li><i class="fa-solid fa-check"></i> Trend detection (up / down / stable)</li>
+            <li><i class="fa-solid fa-check"></i> Personalized financial tips</li>
+            <li><i class="fa-solid fa-check"></i> Category-wise spending breakdown</li>
+          </ul>
+          <a href="#" onclick="goToFeature('ai')" class="hn-btn-primary" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)">Get AI Insights <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#a78bfa">
+            <div class="hn-mock-header" style="color:#a78bfa"><i class="fa-solid fa-brain"></i> AI Prediction</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-predict">
+                <div class="hn-pred-lbl">Predicted Next Month</div>
+                <div class="hn-pred-val">₹21,563.90</div>
+                <div class="hn-pred-trend"><i class="fa-solid fa-arrow-trend-up"></i> Trend: Increasing</div>
+              </div>
+              <div class="hn-mock-tips">
+                <div class="hn-tip"><i class="fa-solid fa-lightbulb" style="color:#f97316"></i> Reduce Food spending by 15%</div>
+                <div class="hn-tip"><i class="fa-solid fa-lightbulb" style="color:#f97316"></i> Travel costs are above average</div>
+                <div class="hn-tip"><i class="fa-solid fa-lightbulb" style="color:#f97316"></i> Set a monthly budget limit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="hn-panel" id="tab-categorize">
+        <div class="hn-panel-text">
+          <div class="hn-panel-label" style="color:#f43f5e"><i class="fa-solid fa-tags"></i> Smart Categorization</div>
+          <h3>Auto-tag every expense.</h3>
+          <p>Expenses are automatically tagged into 7 categories using keyword matching. See a live preview of the detected category as you type the expense title.</p>
+          <ul class="hn-panel-list">
+            <li><i class="fa-solid fa-check"></i> Keyword-based category detection</li>
+            <li><i class="fa-solid fa-check"></i> Live preview while typing</li>
+            <li><i class="fa-solid fa-check"></i> 7 categories: Food, Travel, Shopping, Bills, Health, Education, General</li>
+          </ul>
+          <a href="#" onclick="goToFeature('add')" class="hn-btn-primary" style="background:linear-gradient(135deg,#f43f5e,#e11d48)">Try It Now <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="hn-panel-visual">
+          <div class="hn-mock" style="--mc:#f43f5e">
+            <div class="hn-mock-header" style="color:#f43f5e"><i class="fa-solid fa-tags"></i> Categories</div>
+            <div class="hn-mock-body">
+              <div class="hn-mock-cats">
+                <div class="hn-mcat" style="--cc:#22c55e"><i class="fa-solid fa-utensils"></i><span>Food</span></div>
+                <div class="hn-mcat" style="--cc:#f97316"><i class="fa-solid fa-plane"></i><span>Travel</span></div>
+                <div class="hn-mcat" style="--cc:#38bdf8"><i class="fa-solid fa-cart-shopping"></i><span>Shopping</span></div>
+                <div class="hn-mcat" style="--cc:#facc15"><i class="fa-solid fa-file-invoice"></i><span>Bills</span></div>
+                <div class="hn-mcat" style="--cc:#f43f5e"><i class="fa-solid fa-heart-pulse"></i><span>Health</span></div>
+                <div class="hn-mcat" style="--cc:#a78bfa"><i class="fa-solid fa-graduation-cap"></i><span>Education</span></div>
+                <div class="hn-mcat" style="--cc:#94a3b8"><i class="fa-solid fa-box"></i><span>General</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end panels -->
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section class="hn-why" id="why">
+  <div class="hn-container">
+    <div class="hn-section-head">
+      <h2>Why Choose AI Expense Tracker?</h2>
+      <p>We always put your financial clarity first. Here is what makes us stand out.</p>
+    </div>
+    <div class="hn-why-grid">
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-robot"></i></div>
+        <h4>AI-Powered Predictions</h4>
+        <p class="hn-why-sub">Linear Regression ML Model</p>
+        <p>Our ML model trains on your own spending history to forecast next month's expenses with personalized financial tips.</p>
+      </div>
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-camera"></i></div>
+        <h4>OCR Bill Scanning</h4>
+        <p class="hn-why-sub">Zero Manual Typing</p>
+        <p>Upload any receipt photo and our OCR engine extracts the amount automatically. Log it with a single click.</p>
+      </div>
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <h4>6 Analytics Charts</h4>
+        <p class="hn-why-sub">Full Financial Visibility</p>
+        <p>Monthly trends, category breakdown, daily spending, top expenses, weekday patterns, and cumulative totals.</p>
+      </div>
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-tags"></i></div>
+        <h4>Smart Categorization</h4>
+        <p class="hn-why-sub">Auto-Tag Every Expense</p>
+        <p>Keyword-based detection automatically tags expenses into 7 categories with a live preview as you type.</p>
+      </div>
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-lock"></i></div>
+        <h4>Private & Secure</h4>
+        <p class="hn-why-sub">Your Data Stays Yours</p>
+        <p>All data is stored locally in your own database. No third-party sharing, no subscriptions, no hidden fees.</p>
+      </div>
+      <div class="hn-why-card">
+        <div class="hn-why-icon"><i class="fa-solid fa-gift"></i></div>
+        <h4>100% Free Forever</h4>
+        <p class="hn-why-sub">No Credit Card Needed</p>
+        <p>Every feature — AI predictions, OCR scanning, all 6 charts — is completely free with no limits or paywalls.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hn-how" id="how">
+  <div class="hn-container">
+    <div class="hn-section-head light">
+      <h2>Up and Running in Minutes</h2>
+      <p>No setup required. Just sign up and start tracking.</p>
+    </div>
+    <div class="hn-steps">
+      <div class="hn-step">
+        <div class="hn-step-num">1</div>
+        <div class="hn-step-icon"><i class="fa-solid fa-user-plus"></i></div>
+        <div class="hn-step-title">Create an Account</div>
+        <div class="hn-step-desc">Register with your name, email, and password. Your data is private and secure.</div>
+      </div>
+      <div class="hn-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="hn-step">
+        <div class="hn-step-num">2</div>
+        <div class="hn-step-icon"><i class="fa-solid fa-plus-circle"></i></div>
+        <div class="hn-step-title">Log Your Expenses</div>
+        <div class="hn-step-desc">Add expenses manually or scan a bill photo — the amount is extracted automatically.</div>
+      </div>
+      <div class="hn-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="hn-step">
+        <div class="hn-step-num">3</div>
+        <div class="hn-step-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <div class="hn-step-title">Explore Analytics</div>
+        <div class="hn-step-desc">View 6 charts in the Reports section to understand where your money goes.</div>
+      </div>
+      <div class="hn-step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="hn-step">
+        <div class="hn-step-num">4</div>
+        <div class="hn-step-icon"><i class="fa-solid fa-robot"></i></div>
+        <div class="hn-step-title">Get AI Insights</div>
+        <div class="hn-step-desc">Let the AI predict next month's spending and give you personalized saving tips.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hn-cta">
+  <div class="hn-container">
+    <h2>Ready to take control of your finances?</h2>
+    <p>Join now — it is completely free. No credit card needed.</p>
+    <div class="hn-cta-btns">
+      <button onclick="openAuthModal('register')" class="hn-btn-primary lg"><i class="fa-solid fa-rocket"></i> Get Started Free</button>
+      <button onclick="openAuthModal('login')" class="hn-btn-outline lg"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="hn-footer">
+  <div class="hn-container">
+    <div class="hn-footer-brand"><i class="fa-solid fa-chart-line"></i> AI Expense Tracker</div>
+    <span>Built with Flask &amp; Chart.js</span>
+    <div class="hn-footer-links">
+      <a href="/login">Log In</a>
+      <a href="/register">Register</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="authModal" onclick="handleOverlayClick(event)">
+  <div class="auth-modal-box">
+    <button class="auth-modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+
+    <!-- Login Form -->
+    <div class="auth-form" id="formLogin">
+      <div class="auth-modal-brand"><i class="fa-solid fa-chart-line"></i> AI Expense Tracker</div>
+      <h2>Welcome back</h2>
+      <p class="auth-modal-sub">Sign in to your account</p>
+      <div id="loginMsg" class="auth-alert hidden"></div>
+      <div class="auth-field">
+        <label>Email Address</label>
+        <div class="auth-input-wrap"><i class="fa-solid fa-envelope"></i><input type="email" id="loginEmail" placeholder="you@example.com"/></div>
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input-wrap"><i class="fa-solid fa-lock"></i><input type="password" id="loginPassword" placeholder="••••••••"/><button type="button" class="auth-eye" onclick="togglePw('loginPassword','loginEye')"><i class="fa-solid fa-eye" id="loginEye"></i></button></div>
+      </div>
+      <button class="auth-submit" id="loginBtn" onclick="doLogin()"><span>Sign In</span><i class="fa-solid fa-arrow-right"></i></button>
+      <p class="auth-switch">Don't have an account? <a href="#" onclick="switchForm('register')">Create one</a></p>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-form hidden" id="formRegister">
+      <div class="auth-modal-brand"><i class="fa-solid fa-chart-line"></i> AI Expense Tracker</div>
+      <h2>Create account</h2>
+      <p class="auth-modal-sub">Start tracking your expenses today</p>
+      <div id="registerMsg" class="auth-alert hidden"></div>
+      <div class="auth-field">
+        <label>Full Name</label>
+        <div class="auth-input-wrap"><i class="fa-solid fa-user"></i><input type="text" id="regName" placeholder="John Doe"/></div>
+      </div>
+      <div class="auth-field">
+        <label>Email Address</label>
+        <div class="auth-input-wrap"><i class="fa-solid fa-envelope"></i><input type="email" id="regEmail" placeholder="you@example.com"/></div>
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <div class="auth-input-wrap"><i class="fa-solid fa-lock"></i><input type="password" id="regPassword" placeholder="Min. 6 characters"/><button type="button" class="auth-eye" onclick="togglePw('regPassword','regEye')"><i class="fa-solid fa-eye" id="regEye"></i></button></div>
+      </div>
+      <button class="auth-submit" id="registerBtn" onclick="doRegister()"><span>Create Account</span><i class="fa-solid fa-arrow-right"></i></button>
+      <p class="auth-switch">Already have an account? <a href="#" onclick="switchForm('login')">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.hn-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.hn-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.hn-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Feature click — go directly if logged in, else open login modal
+var _loggedIn = document.body.dataset.loggedIn === 'true';
+var _nextFeature = '';
+function goToFeature(section) {
+  if (_loggedIn) {
+    window.location.href = '/dashboard#' + section;
+  } else {
+    _nextFeature = section;
+    openAuthModal('login');
+  }
+}
+
+// Auth modal
+function openAuthModal(type) {
+  document.getElementById('authModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  switchForm(type);
+}
+function closeAuthModal() {
+  document.getElementById('authModal').classList.remove('active');
+  document.body.style.overflow = '';
+  _nextFeature = '';
+}
+function handleOverlayClick(e) { if (e.target === document.getElementById('authModal')) closeAuthModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAuthModal(); });
+
+function switchForm(type) {
+  document.getElementById('formLogin').classList.toggle('hidden', type !== 'login');
+  document.getElementById('formRegister').classList.toggle('hidden', type !== 'register');
+}
+
+function togglePw(inputId, iconId) {
+  var i = document.getElementById(inputId), e = document.getElementById(iconId);
+  i.type = i.type === 'password' ? 'text' : 'password';
+  e.className = i.type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+}
+
+function showMsg(id, text, type) {
+  var el = document.getElementById(id);
+  el.textContent = text; el.className = 'auth-alert ' + type;
+}
+
+async function doLogin() {
+  var e = document.getElementById('loginEmail').value.trim();
+  var p = document.getElementById('loginPassword').value;
+  if (!e || !p) { showMsg('loginMsg','Please enter email and password','error'); return; }
+  var b = document.getElementById('loginBtn');
+  b.disabled = true; b.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+  try {
+    var r = await fetch('/api/login', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email:e, password:p, next:_nextFeature})});
+    var d = await r.json();
+    if (d.success) {
+      showMsg('loginMsg','Login successful!','success');
+      _loggedIn = true;
+      setTimeout(() => {
+        if (_nextFeature) {
+          window.location.href = '/dashboard#' + _nextFeature;
+        } else {
+          closeAuthModal();
+          window.location.reload();
+        }
+      }, 800);
+    } else {
+      showMsg('loginMsg', d.message || 'Invalid credentials', 'error');
+      b.disabled = false; b.innerHTML = '<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';
+    }
+  } catch(err) {
+    showMsg('loginMsg','Connection error','error');
+    b.disabled = false; b.innerHTML = '<span>Sign In</span><i class="fa-solid fa-arrow-right"></i>';
+  }
+}
+
+async function doRegister() {
+  var n = document.getElementById('regName').value.trim();
+  var e = document.getElementById('regEmail').value.trim();
+  var p = document.getElementById('regPassword').value;
+  if (!n || !e || !p) { showMsg('registerMsg','All fields are required','error'); return; }
+  if (p.length < 6) { showMsg('registerMsg','Password must be at least 6 characters','error'); return; }
+  var b = document.getElementById('registerBtn');
+  b.disabled = true; b.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating...';
+  try {
+    var r = await fetch('/api/register', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username:n, email:e, password:p})});
+    var d = await r.json();
+    if (d.success) {
+      showMsg('registerMsg','Account created! Please sign in.','success');
+      setTimeout(() => switchForm('login'), 1200);
+      b.disabled = false; b.innerHTML = '<span>Create Account</span><i class="fa-solid fa-arrow-right"></i>';
+    } else {
+      showMsg('registerMsg', d.message || 'Registration failed', 'error');
+      b.disabled = false; b.innerHTML = '<span>Create Account</span><i class="fa-solid fa-arrow-right"></i>';
+    }
+  } catch(err) {
+    showMsg('registerMsg','Connection error','error');
+    b.disabled = false; b.innerHTML = '<span>Create Account</span><i class="fa-solid fa-arrow-right"></i>';
+  }
+}
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('hn-navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Canvas particles
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], mouse = { x: -999, y: -999 };
+const COLORS = ['#fb923c','#f97316','#facc15','#ea580c','#fbbf24'];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', () => { resize(); initP(); });
+window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+function P() { this.x=Math.random()*W; this.y=Math.random()*H; this.vx=(Math.random()-.5)*.5; this.vy=(Math.random()-.5)*.5; this.r=Math.random()*2+1; this.color=COLORS[Math.floor(Math.random()*COLORS.length)]; this.alpha=Math.random()*.5+.2; }
+function initP() { particles=Array.from({length:Math.floor(W*H/12000)},()=>new P()); }
+initP();
+function draw() {
+  ctx.clearRect(0,0,W,H);
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<140){ctx.beginPath();ctx.strokeStyle=particles[i].color;ctx.globalAlpha=(1-d/140)*.15;ctx.lineWidth=.8;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
+    }
+    const mdx=particles[i].x-mouse.x,mdy=particles[i].y-mouse.y,md=Math.sqrt(mdx*mdx+mdy*mdy);
+    if(md<120){ctx.beginPath();ctx.strokeStyle='#fb923c';ctx.globalAlpha=(1-md/120)*.35;ctx.lineWidth=1;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();}
+  }
+  particles.forEach(p=>{
+    ctx.globalAlpha=p.alpha;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.shadowBlur=8;ctx.shadowColor=p.color;ctx.fill();ctx.shadowBlur=0;
+    p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+  });
+  ctx.globalAlpha=1;requestAnimationFrame(draw);
+}
+draw();
+
+// Counter animation
+document.querySelectorAll('[data-target]').forEach(el => {
+  const target = +el.dataset.target;
+  const io = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+      let cur=0;const step=()=>{cur=Math.min(cur+1,target);el.textContent=cur;if(cur<target)requestAnimationFrame(step);};step();io.unobserve(el);
+    }
+  });
+  io.observe(el);
+});
+</script>
+</body>
+</html>
+
+</script>
+</body>
+</html>
